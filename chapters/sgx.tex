@@ -1,0 +1,38 @@
+% !TeX root = ../summary-syssec.tex
+
+\section{Intel SGX}
+\subsection{Basics}
+\begin{itemize}
+  \item Security enhancements in Intel CPUs
+  \item Main goal:
+    \begin{itemize}
+      \item Enable secure execution in otherwise untrusted platforms (OS, ...)
+      \item Enclave data confidentiality and execution integrity
+    \end{itemize}
+  \item Enclave = security-critical part of the application
+\end{itemize}
+
+\subsection{Attacks}
+\begin{itemize}
+  \item  PMC
+    \begin{enumerate}
+      \item Use Performance Monitoring Counters (PMC) to count cache misses
+	(instead of timing L1 vs. L2)
+      \item Enabled by privileged adversary
+    \end{enumerate}
+  \item  isolate victim
+    \begin{enumerate}
+      \item Assign the attack process and victim enclave to separate core
+      \item Reduces noise
+    \end{enumerate}
+  \item  hyper-threading
+    \begin{enumerate}
+      \item Run uninterrupted victim enclave and attacker in parallel
+      \item Complicates attack detection
+    \end{enumerate}
+  \item Attack target
+    \begin{enumerate}
+      \item Attack non-cryptographic computations
+    \end{enumerate}
+\end{itemize}
+Generic and efficient defenses  are an open problem.
