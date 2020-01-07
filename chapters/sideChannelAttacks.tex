@@ -1,0 +1,52 @@
+% !TeX root = ../summary-syssec.tex
+
+\section{Side Channel Attacks}
+\subsection{Introduction}
+Security proofs based on models of system and attacker. Most models do not take
+into account the implementation and how it interacts with the environment.
+
+Examples:
+\begin{itemize}
+  \item Faulty Output (Glitch)
+  \item Power Consumption
+  \item EM Emissions
+  \item Heat
+  \item Timing
+  \item Design Details
+  \item Sound
+  \item Data Coupling
+\end{itemize}
+
+\subsection{Timing Cryptanalysis of RSA}
+\begin{enumerate}
+  \item its execution time depends on the key
+  \item  it can be measured for different inputs
+\end{enumerate}
+
+\subsubsection{Square-And-Multiply}
+
+\begin{itemize}
+  \item Key-dependent Branching
+  \item Attacker observes how many 1 are in the key
+\end{itemize}
+Greatly reduces the search space for the secret key, but still huge...
+
+\subsubsection{Montgomery multiplication}
+Multiplication the execution time depends on \textbf{input and key}.
+
+Attack main idea:
+\begin{itemize}
+  \item Try large number of different messages and leverage average.
+  \item Simulate execution up to round $i$ (using known key bits)
+  \item Try many messages, measure execution time
+\end{itemize}
+
+\subsubsection{Protecting}
+\begin{itemize}
+  \item Change implementation s.t. it is not time dependent.
+  \item Generic protection is hard.
+  \item Performance Penalty
+\end{itemize}
+
+\subsection{Cache Attacks}
+
