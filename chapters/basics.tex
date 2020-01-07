@@ -2,6 +2,21 @@
 
 \section{Basics}
 \subsection{Concepts}
+\begin{description}
+  \item[Integrity:] The data was not changed by a party unauthorized to change it, meaning
+    a party who does not have the necessary cryptographic key.
+  \item[Confidentiality:] An unauthorized person cannot understand the contents of the
+    message, because the message looks like random bits (protected data belongs to
+    some other users).
+  \item[Secrecy:] Same as confidentiality, but protected data belongs to the
+    sender.
+  \item[DoS:] A service is blocked either by sending enough traffic to overwhelm the service
+    or selectively exploit bugs/errors in the design.
+  \item[Authentication:] The identity of the sender is correct.
+  \item[Authorization:] Examine whether a person has the capability to use
+    a certain service or access certain data.
+\end{description}
+
 \begin{tabular}{p{2.2cm}p{2.5cm}p{2.5cm}}
   \hline
 	& 	\textbf{Confidentiality} & \textbf{Authentification}\\
@@ -13,15 +28,32 @@
   \textbf{Asymmetric cryptography} & public key encryption & digital signatures\\
   \hline
 \end{tabular}
+\subsubsection{Proper Usage}
+\begin{description}
+  \item[Authenticate-then-encrypt:] provides both secrecy and authenticity of the message.
+    \begin{itemize}
+      \item susceptible to chosen ciphertext attacks, because an at-
+	tacker can simply send messages and observe the system’s behavior upon
+	decryption attempts.
+      \item can potentially be used for a DoS attack
+    \end{itemize}
+  \item[Ecrypt-then-authenticate:]
+    \begin{itemize}
+      \item crafted messaged are detected immediately
+      \item faster
+    \end{itemize}
+  \item[Encrypt-and-authenticate]
+    The MAC output may reveal information on the plaintext and thus insecure.
+\end{description}
 \subsection{RSA}
 \begin{enumerate}
-	\item Choose primes $p,q$ and let $n = p\cdot q$
-	\item Let  $\phi(n) = (p-1)(q-1)$
-	\item Choose $e$ relatively prime to  $\phi(n)$: gcd($\phi(n)$, $r$) = 1
-      \item Compute $d$, s.t. $ed \text{ mod } \phi(n) = 1$
-	\item The public key is: PU = ($e$, $n$)
-	\item The private key is: PK =  $(d, n)$
-	\item Encrypt with $c = m^e \text{ mod } n $
-	\item Decrypt with $m = c^d \text{ mod } n$
+  \item Choose primes $p,q$ and let $n = p\cdot q$
+  \item Let  $\phi(n) = (p-1)(q-1)$
+  \item Choose $e$ relatively prime to  $\phi(n)$: gcd($\phi(n)$, $e$) = 1
+  \item Compute $d$, s.t. $ed \text{ mod } \phi(n) = 1$
+  \item The public key is: PU = ($e$, $n$)
+  \item The private key is: PK =  $(d, n)$
+  \item Encrypt with $c = m^e \text{ mod } n $
+  \item Decrypt with $m = c^d \text{ mod } n$
 \end{enumerate}
 Intuition: If one can factor $n$, one can break RSA.
