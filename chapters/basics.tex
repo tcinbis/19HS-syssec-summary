@@ -1,0 +1,27 @@
+% !TeX root = ../summary-syssec.tex
+
+\section{Basics}
+\subsection{Concepts}
+\begin{tabular}{p{2.2cm}p{2.5cm}p{2.5cm}}
+  \hline
+	& 	\textbf{Confidentiality} & \textbf{Authentification}\\
+	\hline
+	\hline
+  \textbf{Symmetric cryptography} & symmetric key encryption & symmetric
+  key authentication\\
+  \hline
+  \textbf{Asymmetric cryptography} & public key encryption & digital signatures\\
+  \hline
+\end{tabular}
+\subsection{RSA}
+\begin{enumerate}
+	\item Choose primes $p,q$ and let $n = p\cdot q$
+	\item Let  $\phi(n) = (p-1)(q-1)$
+	\item Choose $e$ relatively prime to  $\phi(n)$: gcd($\phi(n)$, $r$) = 1
+      \item Compute $d$, s.t. $ed \text{ mod } \phi(n) = 1$
+	\item The public key is: PU = ($e$, $n$)
+	\item The private key is: PK =  $(d, n)$
+	\item Encrypt with $c = m^e \text{ mod } n $
+	\item Decrypt with $m = c^d \text{ mod } n$
+\end{enumerate}
+Intuition: If one can factor $n$, one can break RSA.
