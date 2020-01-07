@@ -54,6 +54,13 @@ Attack main idea:
   \item Performance Penalty
 \end{itemize}
 
+\subsection{Cache Timing Attack on AES}
+During the execution of AES secret key is used to
+index arrays (S-boxes). The time to lookup an array element depends
+on whether this element of the S-box has partially or entirely been loaded into the
+cache. Measuring the timing differences for these lookups allows the attacker to draw
+conclusions about the key.
+
 \subsection{Cache Attacks}
 \subsubsection{Prime+Probe}
 \includegraphics[width=\columnwidth]{sidechannel-prime-probe.png}
