@@ -49,4 +49,20 @@ Attack main idea:
 \end{itemize}
 
 \subsection{Cache Attacks}
+\subsubsection{Prime+Probe}
+\includegraphics[width=\columnwidth]{sidechannel-prime-probe.png}
+\subsubsection{Variants}
+\begin{enumerate}
+	\item \textbf{Data access} depends on secret data: Data access patterns
+	  in the cache leak information about the secret
+	\item \textbf{Control flow} depends on secret data: Code access
+	  patterns in the cache leak information about the secret
+\end{enumerate}
+\subsubsection{Protecting}
+\begin{itemize}
+	\item \textbf{Basic principle:}
+Try to eliminate secret-dependent cache access patterns
+\item Specific defenses exist, but eliminating all secret-dependent
+branching (code and data) is difficult and expensive…
+\end{itemize}
 
