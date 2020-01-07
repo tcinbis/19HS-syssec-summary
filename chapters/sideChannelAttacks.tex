@@ -54,28 +54,54 @@ Attack main idea:
   \item Performance Penalty
 \end{itemize}
 
-\subsection{Cache Timing Attack on AES}
-During the execution of AES secret key is used to
-index arrays (S-boxes). The time to lookup an array element depends
-on whether this element of the S-box has partially or entirely been loaded into the
-cache. Measuring the timing differences for these lookups allows the attacker to draw
-conclusions about the key.
 
 \subsection{Cache Attacks}
 \subsubsection{Prime+Probe}
 \includegraphics[width=\columnwidth]{sidechannel-prime-probe.png}
 \subsubsection{Variants}
 \begin{enumerate}
-	\item \textbf{Data access} depends on secret data: Data access patterns
-	  in the cache leak information about the secret
-	\item \textbf{Control flow} depends on secret data: Code access
-	  patterns in the cache leak information about the secret
+  \item \textbf{Data access} depends on secret data: Data access patterns
+    in the cache leak information about the secret
+  \item \textbf{Control flow} depends on secret data: Code access
+    patterns in the cache leak information about the secret
 \end{enumerate}
+\subsubsection{Cache Timing Attack on AES}
+During the execution of AES secret key is used to
+index arrays (S-boxes). The time to lookup an array element depends
+on whether this element of the S-box has partially or entirely been loaded into the
+cache. Measuring the timing differences for these lookups allows the attacker to draw
+conclusions about the key.
+
+Most CPUs have special AES hardware  $\Rightarrow$ not vulnerable.
 \subsubsection{Protecting}
 \begin{itemize}
-	\item \textbf{Basic principle:}
-Try to eliminate secret-dependent cache access patterns
-\item Specific defenses exist, but eliminating all secret-dependent
-branching (code and data) is difficult and expensive…
+  \item \textbf{Basic principle:}
+    Try to eliminate secret-dependent cache access patterns
+  \item Specific defenses exist, but eliminating all secret-dependent
+    branching (code and data) is difficult and expensive…
 \end{itemize}
 
+\subsection{Power Analysis Attacks}
+Mainly used on Smartcards, RFID chips, Sensor Nodes
+\begin{itemize}
+  \item The attacker needs to have physical access
+  \item Measures the consumed power during  operation
+\end{itemize}
+Square-and-multy in RSA is vulnerable through simple power analysis:
+\subsubsection{Protection}
+Goal: Elimination or significant reduction of the correlation between
+\begin{itemize}
+	\item Random change of power consumption in time
+	\item Noise generator
+	\item Physical shielding
+	\item Software balancing
+	\item Hardware balancing
+\end{itemize}
+
+\subsection{Acoustic Attacks}
+\begin{itemize}
+	\item High-frequency sounds caused by vibration of
+electronic components
+\item \textbf{Different keys cause different sounds}
+  \item Can extract RSA keys based on sound
+\end{itemize}
