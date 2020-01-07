@@ -57,3 +57,16 @@
   \item Decrypt with $m = c^d \text{ mod } n$
 \end{enumerate}
 Intuition: If one can factor $n$, one can break RSA.
+
+\subsection{Block Cipher}
+Secret key = map cleartext $\Leftrightarrow$ ciphertext
+\begin{itemize}
+	\item Modern block ciphers use a key of $K$ bits to specify a random
+subset of $2^K$ mappings.
+\item If the selection of the $2^K$ mappings is random, the resulting
+cipher will be a good approximation of the ideal block cipher.
+\item \textbf{Diffusion:} If plaintext bit $i$ is changed, the ciphertext bit $j$ should
+  change with $p=0.5$
+\item \textbf{Confusion:} Each bit of $c$ should depend on the whole key
+\end{itemize}
+
