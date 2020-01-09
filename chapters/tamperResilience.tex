@@ -38,9 +38,11 @@ memory bus.
     that they are talking to ATM.
 \end{itemize}
 
-\subsection{Crypto-Processors}
+\subsection{Hardware Security Module}
 \begin{itemize}
   \item Tamper resistance
+  \item Limited set of functions
+  \item No support for exporting the key
 \end{itemize}
 
 \subsection{Glitch Attacks}
@@ -65,11 +67,50 @@ state has reached them.
 
 \subsubsection{Protection}
 \begin{itemize}
-	\item  Low and high voltage sensors
-	\item Frequency sensors and filters
-	\item Light sensor
-	\item Glitch sensor
-	\item Software countermeasures
+  \item  Low and high voltage sensors
+  \item Frequency sensors and filters
+  \item Light sensor
+  \item Glitch sensor
+  \item Software countermeasures
 \end{itemize}
 
+\subsection{API Attacks}
+\subsubsection{Background}
+A security API is the software layer through which the module's functions are
+exposed to the external world.
+\begin{itemize}
+  \item The HSM is secure
+    \begin{itemize}
+      \item Protects Contents (Keys, Secrets, PINs)
+      \item Can’t break in (Tamper-Evident)
+    \end{itemize}
+  \item Trick the HSM into leaking the secrets by
+    sending the right requests!
+  \item Most taper resistant devices are vulnerable to API attacks
+\end{itemize}
 
+\subsubsection{PIN Verification at a Bank}
+\textbf{Inputs:}
+
+\begin{itemize}
+  \item Encrypted PIN, Account Number (PAN)
+  \item Decimalization Table, PIN Offset
+\end{itemize}
+\textbf{Attack Idea:} Supply different decimalization table and PIN offset
+\begin{center}
+  \includegraphics[width=0.6\columnwidth]{tamper_resilience_PIN-attack.png}
+\end{center}
+
+\subsubsection{Chip and PIN}
+Man in the middle attack:
+\begin{center}
+  \includegraphics[width=0.5\columnwidth]{tamper_resilience_chip-and-pin.png}
+\end{center}
+Before the transaction, the MITM tells card that transaction will be signed on
+paper $\Rightarrow$ No PIN required.
+
+\subsection{Protection}
+\begin{itemize}
+	\item Access Cnntrol
+	\item Limit functionality
+\end{itemize}
