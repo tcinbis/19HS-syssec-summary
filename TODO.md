@@ -3,7 +3,7 @@
 | Week | Name                            | Papers                                                          | Assignee | Lecture | Papers |     |
 | :--: | ------------------------------- | --------------------------------------------------------------- | :------: | :-----: | :----: | --- |
 |  1   | timing_attack                   | Timing Attacks, Cache-timing Attacks AES, Remote Timing Attacks |   Theo   |   [x]   |  [x]   |     |
-|  2   | AES_Cache_RSA_Power_Acustic_RSA |                                                                 |   Theo   |   [x]   |   []   |     |
+|  2   | AES_Cache_RSA_Power_Acustic_RSA |                                                                 |   Theo   |   [x]   |  [X]   |     |
 |  3   | TEMPEST_HSM                     | Decimalisation table attacks for PIN cracking                   |   Theo   |   []    |   []   |     |
 |  4   | MemoryRings_DMA_NANDmirroring   | Cold Boot Attacks on Encryption Keys, NAND Mirroring            |   Theo   |   []    |   []   |     |
 |  5   | 2019_SGX                        | DelegaTEE                                                       |          |   []    |   []   |     |

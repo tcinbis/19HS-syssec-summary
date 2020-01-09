@@ -68,19 +68,39 @@ Attack main idea:
     patterns in the cache leak information about the secret
 \end{enumerate}
 \subsubsection{Cache Timing Attack on AES}
+\textbf{Background}\\
 During the execution of AES secret key is used to
 index arrays (S-boxes). The time to lookup an array element depends
 on whether this element of the S-box has partially or entirely been loaded into the
-cache. Measuring the timing differences for these lookups allows the attacker to draw
-conclusions about the key.
+cache.
+\begin{itemize}
+	\item Allows complete key recovery.
+	\item Problem is in the design, not in the implementation.
+\end{itemize}
 
-Most CPUs have special AES hardware  $\Rightarrow$ not vulnerable.
+\textbf{Setting:}
+\begin{itemize}
+\item Attacker can send messages and observe overall execution time
+\item Attacker has same setup (software, hardware) for local tests
+Execution
+\end{itemize}
+
+\textbf{Attack:}
+\begin{itemize}
+\item For each byte of the key, one index value will have the slowest lookup.
+\item The total execution will be slow
+\item Find this index value
+\item (try many messages locally)
+\end{itemize}
+
+
 \subsubsection{Protecting}
 \begin{itemize}
   \item \textbf{Basic principle:}
     Try to eliminate secret-dependent cache access patterns
   \item Specific defenses exist, but eliminating all secret-dependent
     branching (code and data) is difficult and expensive…
+  \item Most CPUs have special AES hardware  $\Rightarrow$ not vulnerable.
 \end{itemize}
 
 \subsection{Power Analysis Attacks}
