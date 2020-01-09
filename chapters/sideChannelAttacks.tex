@@ -17,6 +17,7 @@ Examples:
   \item Data Coupling
 \end{itemize}
 
+\textbf{Two categories of Side channel analysis:}
 \begin{description}
   \item[Simple] computation only depends upon the key.
   \item[Differential] computation depends upon both the input and the key.
@@ -42,9 +43,10 @@ Multiplication the execution time depends on \textbf{input and key}.
 
 Attack main idea:
 \begin{itemize}
-  \item Try large number of different messages and leverage average.
-  \item Simulate execution up to round $i$ (using known key bits)
-  \item Try many messages, measure execution time
+  \item Process attack bit per bit.
+  \item Try large number of different messages and leverage average execution
+    time.
+  \item For each message, test whether the round bit was 1 or 0.
 \end{itemize}
 
 \subsubsection{Protecting}
@@ -87,9 +89,10 @@ Mainly used on Smartcards, RFID chips, Sensor Nodes
   \item The attacker needs to have physical access
   \item Measures the consumed power during  operation
 \end{itemize}
-Square-and-multy in RSA is vulnerable through simple power analysis:
+Square-and-multy in RSA is vulnerable through simple power analysis.
 \subsubsection{Protection}
-Goal: Elimination or significant reduction of the correlation between
+Goal: Elimination or significant reduction of the correlation between operand
+values and power consumption.
 \begin{itemize}
 	\item Random change of power consumption in time
 	\item Noise generator

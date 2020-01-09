@@ -15,24 +15,24 @@
 \subsection{Attacks}
 \begin{itemize}
   \item  PMC
-    \begin{enumerate}
+    \begin{itemize}
       \item Use Performance Monitoring Counters (PMC) to count cache misses
 	(instead of timing L1 vs. L2)
       \item Enabled by privileged adversary
-    \end{enumerate}
+      \end{itemize}
   \item  isolate victim
-    \begin{enumerate}
+    \begin{itemize}
       \item Assign the attack process and victim enclave to separate core
       \item Reduces noise
-    \end{enumerate}
+      \end{itemize}
   \item  hyper-threading
-    \begin{enumerate}
+    \begin{itemize}
       \item Run uninterrupted victim enclave and attacker in parallel
       \item Complicates attack detection
-    \end{enumerate}
+      \end{itemize}
   \item Attack target
-    \begin{enumerate}
+    \begin{itemize}
       \item Attack non-cryptographic computations
-    \end{enumerate}
+      \end{itemize}
 \end{itemize}
 Generic and efficient defenses  are an open problem.
