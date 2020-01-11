@@ -12,4 +12,4 @@
 |  8   | mobile-platsec-2019             | SoK: Android Security                                           |   Tom    |   []    |   []   |     |
 |  9   | TCG-attestation                 | TrustVisor                                                      |   Tom    |   []    |   []   |     |
 |  10  | timing-based-attestation        | Pioneer                                                         |   Tom    |   []    |   []   |     |
-|  11  | iot_security                    |                                                                 |   Tom    |   []    |   []   |     |
+|  11  | iot_security                    |                                                                 |   Tom    |   [x]   |   [x]  |     |
