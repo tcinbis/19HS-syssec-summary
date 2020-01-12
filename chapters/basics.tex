@@ -69,3 +69,11 @@ cipher will be a good approximation of the ideal block cipher.
 \item \textbf{Confusion:} Each bit of $c$ should depend on the whole key
 \end{itemize}
 
+\subsection{Hash function}
+Properties of a hash function: $y = H(x)$
+\begin{description}
+    \item[one-way] can not be reversed 
+    \item[weak collision resistance] given x, can not find $x' \not= x \text{ s.t. } H(x) = H(x')$
+    \item[strong collision resistance] can not find $x' \not= x \text{ s.t. } H(x) = H(x')$
+\end{description}
+
