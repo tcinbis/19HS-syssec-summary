@@ -1,0 +1,130 @@
+\section{OS Security}
+
+\begin{description}
+    \item[OS Security Goals] secrecy, integrity, availability
+    \item[Trust Model] set of SW and data which the system depends on for correct enforcement of security goals
+    \item[Threat Model] set of operations available to compromise system
+\end{description}
+
+\subsection{Access control}
+Whether to allow requests from \textbf{subjects} to perform \textbf{operations} on \textbf{objects}.
+
+\begin{description}
+    \item[protection system] defines security requirements of OS. Consists of protection state and protection state operations
+        \begin{description}
+            \item[protection state] operations a subject can perform on obj.
+            \item[protection state operations] enable modification of state
+        \end{description}
+\end{description}
+
+An access matrix defines which operations a subject can perform on an obj. (subject as row, object as column)
+Store by column: ACL (\textbf{A}ccess \textbf{C}ontrol \textbf{L}ist) stored with objects.
+Store by column: Capability of a subject
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{images/os_sec_capabilities-vs-ACLs.png}
+\end{center}
+
+\subsubsection{DAC}
+\textbf{D}iscretionary \textbf{A}ccess \textbf{C}ontrol.
+Is called discretionary, because subject can pass on his permissions directly/indirectly to other subjects.
+\begin{itemize}
+    \item allow untrusted processes/users to modify protection state
+    \item only works if all processes are harmless and users make no mistakes
+\end{itemize}
+\subsubsection{MAC}
+\textbf{M}andatory \textbf{A}ccess \textbf{Control}
+
+\begin{itemize}
+    \item only modifiable by admin
+    \item subjects and obj are labels, state represents allowed operations
+    \item transition state is legal way to relabel subjects and objs
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=0.9\linewidth]{images/os_sec_MAC.png}
+\end{center}
+
+\subsubsection{Reference Monitor}
+\begin{description}
+    \item[input] request of security sensitive operation
+    \item[output] binary answer
+    \item[authorization module] converts request into query for policy store
+\end{description}
+
+\textbf{Secure OS} iff system uses reference monitor which satisfies:
+\begin{enumerate}
+    \item complete mediation
+    \item tamperproof
+    \item verifiable
+\end{enumerate}
+
+Does not protect against TOCTTOU attacks.
+
+\subsubsection{Covert Channels}
+Capability to transfer information between processes that are not supposed to be allowed to communicate by the security policy.
+
+There are \textbf{storage} and \textbf{timing} channels.
+
+Prevent it by:
+\begin{itemize}
+    \item memoryless program
+    \item isolate program
+    \item transitivity (if program A is confined and calls program B, then B must also be confined)
+    \item masking (caller determines all inputs to all channels)
+    \item enforcement (enforce that input into covert channel conforms with caller's [security] specification)
+\end{itemize}
+
+\subsection{Linux Security Model}
+Process in user space has access rights based on user ID (UID).
+
+UID 0 is reserved for \texttt{root}.
+\begin{description}
+    \item[kernel process] can access everything
+    \item[root process] can order kernel process to access everything
+\end{description}
+
+Kernel verifies permissions before system call! Compares UID and GID (Group ID) of subject and object.
+
+\subsubsection{SELinux}
+No default superuser exists, because SELinuxs default is to deny access. Everything must be specifically granted.
+
+\begin{description}
+    \item[RBAC] Role based access control
+        \begin{itemize}
+            \item rules specify roles user can use
+            \item rules specify when and where a user can transition into another role
+        \end{itemize}
+    \item[MLS] multi level security
+        \begin{itemize}
+            \item handling of classified data where \textit{no read up} or \textit{write down} is allowed
+            \item enforce by file system labeling
+        \end{itemize}
+\end{description}
+
+In SELinux every subject/object has a \textbf{security context} which consists of three labels:\vspace{-1.5mm}
+\begin{description}
+    \item[user label] on a subject: user privileges, on an object: objects owner
+    \item[role label]  on a subject: subject's role, on an object: no meaning (always defaults to \texttt{object\char`_r})
+    \item[domain label] set of subjects and objects which are allowed to interact with each other
+\end{description}
+This is called \textbf{type enforcement}! SELinux can make two types of decisions:\vspace{-1.5mm}
+\begin{description}
+    \item[access decision] Is subject allowed to do something within it's domain?
+    \item[transition decision] Is subject allowed to do somthing in another domain (transition into this domain)?
+\end{description}
+Hard part is not to grant access to files, but allowing \textbf{safe domain transitions}.
+
+Example rule for passwd (access to shadow file missing):\\
+\texttt{allow user\char`_t passwd\char`_exec\char`_t: file $\{$ getattr execute $\}$; \\ allow passwd\char`_t passwd\char`_exec\char`_t: file entrypoint; \\ allow user\char`_t passwd\char`_t: process transition;}
+
+\subsection{Other OSs}
+\subsubsection{Qubes}
+Security by compartmentalization. 1 qube equals 1 VM.
+
+\subsubsection{Microkernels}
+Idea is to minimize TCB. Follows least priviledge principle and removes many parts from kernel space.
+\begin{center}
+    \includegraphics[width=0.8\linewidth]{images/os_sec_MicrokernelVSMonolithic.png}
+\end{center}
+
+\textbf{sel4} is a microkernel which focuses on efficency and high assurance. Uses formal verification of code to guarantee correctness w.r.t. specification.
