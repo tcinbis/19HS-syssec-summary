@@ -10,6 +10,6 @@
 |  6   | meltdown - spectre lecture      | Meltdown, Spectre                                               |          |   []    |   []   |     |
 |  7   | OS-security_comprehensive       |                                                                 |   Tom    |   []    |   []   |     |
 |  8   | mobile-platsec-2019             | SoK: Android Security                                           |   Tom    |   []    |   []   |     |
-|  9   | TCG-attestation                 | TrustVisor                                                      |   Tom    |   []    |   []   |     |
+|  9   | TCG-attestation                 | TrustVisor                                                      |   Tom    |   [x]   |   []   |     |
 |  10  | timing-based-attestation        | Pioneer                                                         |   Tom    |   []    |   []   |     |
 |  11  | iot_security                    |                                                                 |   Tom    |   [x]   |   [x]  |     |
