@@ -9,7 +9,7 @@
 |  5   | 2019_SGX                        | DelegaTEE                                                       |          |   []    |   []   |     |
 |  6   | meltdown - spectre lecture      | Meltdown, Spectre                                               |   Tom    |  [x]    |   []   |     |
 |  7   | OS-security_comprehensive       |                                                                 |   Tom    |   [x]   |   [x]  |     |
-|  8   | mobile-platsec-2019             | SoK: Android Security                                           |   Tom    |   [x]   |   []   |     |
+|  8   | mobile-platsec-2019             | SoK: Android Security                                           |   Tom    |   [x]   |   [x]  |     |
 |  9   | TCG-attestation                 | TrustVisor                                                      |   Tom    |   [x]   |   []   |     |
-|  10  | timing-based-attestation        | Pioneer                                                         |   Tom    |   []    |   []   |     |
+|  10  | timing-based-attestation        | Pioneer                                                         |   Tom    |   [x]   |   [x]  |     |
 |  11  | iot_security                    |                                                                 |   Tom    |   [x]   |   [x]  |     |
