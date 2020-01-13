@@ -7,7 +7,7 @@
 |  3   | TEMPEST_HSM                     | Decimalisation table attacks for PIN cracking                   |   Theo   |   [X]   |  [X]   |     |
 |  4   | MemoryRings_DMA_NANDmirroring   | Cold Boot Attacks on Encryption Keys, NAND Mirroring            |   Theo   |   [X]   |   []   |     |
 |  5   | 2019_SGX                        | DelegaTEE                                                       |          |   []    |   []   |     |
-|  6   | meltdown - spectre lecture      | Meltdown, Spectre                                               |   Tom    |  [x]    |   []   |     |
+|  6   | meltdown - spectre lecture      | Meltdown, Spectre                                               |   Tom    |  [x]    |   [x]  |     |
 |  7   | OS-security_comprehensive       |                                                                 |   Tom    |   [x]   |   [x]  |     |
 |  8   | mobile-platsec-2019             | SoK: Android Security                                           |   Tom    |   [x]   |   [x]  |     |
 |  9   | TCG-attestation                 | TrustVisor                                                      |   Tom    |   [x]   |   []   |     |
