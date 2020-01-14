@@ -74,6 +74,37 @@ Prevent it by:
     \item enforcement (enforce that input into covert channel conforms with caller's [security] specification)
 \end{itemize}
 
+\subsection{Unix Access Control}
+\subsubsection{Setuid}
+When an executable file's \texttt{setuid} permission is set, users may execute that
+program with a level of access that matches the user who owns the file.
+
+The kernel ignores \texttt{setuid} on scripts for security reasons.
+\subsubsection{Directory Permissions}
+\begin{description}
+  \item[read bit (\texttt{r})] allows to list the files within the directory
+  \item[write bit (\texttt{w})] allows to create, rename, or delete files
+    within the directory, and modify the directory's attributes
+  \item[execute bit (\texttt{x})] allows  to enter the directory, and access
+    files and directories inside
+  \item[sticky bit (\texttt{T}, or \texttt{t} if the execute bit is set for
+    \texttt{others})] states that files and directories within that directory
+    may only be deleted or renamed by their owner (or root)
+\end{description}
+
+\subsubsection{\texttt{sudo}, \texttt{su}}
+
+\texttt{sudo}:
+\begin{itemize}
+  \item used to gain root access using the user's own password.
+\end{itemize}
+\texttt{su}:
+\begin{itemize}
+  \item used to switch between users using the target user's password
+\end{itemize}
+\texttt{sudo} allows more fine-grained configuration and thereby more selective
+privilege escalation. $\Rightarrow$ prefer \texttt{sudo} over \texttt{su}.
+
 \subsection{Linux Security Model}
 Process in user space has access rights based on user ID (UID).
 
