@@ -58,8 +58,21 @@ Attack main idea:
 
 
 \subsection{Cache Attacks}
+\subsubsection{Flush+Reload}
+For shared memory only.
+\begin{enumerate}
+	\item Attacker flushes cache
+	\item Victim caches data
+	\item Attacker accesses possible cached data. If this access was fast,
+	  then data is cached.
+\end{enumerate}
 \subsubsection{Prime+Probe}
+    Also without shared memory (\textbf{NOTE:} we only get the cache address
+    which was loaded by victim)
+
 \includegraphics[width=\columnwidth]{sidechannel-prime-probe.png}
+
+
 \subsubsection{Variants}
 \begin{enumerate}
   \item \textbf{Data access} depends on secret data: Data access patterns

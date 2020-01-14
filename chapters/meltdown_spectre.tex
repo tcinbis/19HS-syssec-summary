@@ -19,20 +19,16 @@ Cache location depends on actual data address.
     \item[Out-of-Order execution] parallelize execute stage (EX). Run all instr. without inter dependencies in parallel. Retire in-order.
 \end{description}
 
-\subsubsection{Cache Side-Channels}
-\begin{itemize}
-    \item Flush \& Reload: for shared memory
-    \item Prime \& Probe: without shared memory (\textbf{NOTE:} we only get the cache address which was loaded by victim)
-\end{itemize}
 
-\subsubsection{Meltdown}
+\subsubsection{Attack}
 Idea: Microarchitectural state (caches) is modified even if memory access was not allowed.
 
 \begin{center}
     \includegraphics[width=0.8\linewidth]{images/meltdown-cache.png}
 \end{center}
 
-\texttt{probe\char`_array} will be accessed at an index which depends on the secret (e.g. data in kernel address space).
+\texttt{probe\char`_array} will be accessed at an index which depends on the
+secret (e.g. data in kernel address space $[$\texttt{kernel\char`_address}$]$).
 Check cache load times for all indices of array to get the index which was accessed by prohibited memory read.
 
 \subsection{Spectre}
@@ -52,7 +48,9 @@ Attacker has control over input used in branch (here \texttt{x}).
 \end{center}
 
 \subsubsection{Spectre 2}
-Idea: Mistrain BTB to exec. code which creates a side-channel $\xrightarrow{}$ spectre gadget.
+Idea: Mistrain BTB to exec. code which creates a side-channel $\xrightarrow{}$
+spectre gadget.\\
+Unlike Meltdown this does not exploit race condition.
 
 Gadget should:\vspace{-1.5mm}
 \begin{enumerate}
