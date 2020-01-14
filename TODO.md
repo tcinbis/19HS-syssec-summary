@@ -6,7 +6,7 @@
 |  2   | AES_Cache_RSA_Power_Acustic_RSA |                                                                 |   Theo   |   [x]   |  [X]   |     |
 |  3   | TEMPEST_HSM                     | Decimalisation table attacks for PIN cracking                   |   Theo   |   [X]   |  [X]   |     |
 |  4   | MemoryRings_DMA_NANDmirroring   | Cold Boot Attacks on Encryption Keys, NAND Mirroring            |   Theo   |   [X]   |   [X]  |     |
-|  5   | 2019_SGX                        | DelegaTEE                                                       |   Theo   |   [X]   |   []   |     |
+|  5   | 2019_SGX                        | DelegaTEE                                                       |   Theo   |   [X]   |   [X]   |     |
 |  6   | meltdown - spectre lecture      | Meltdown, Spectre                                               |   Tom    |   [x]   |   [x]  |     |
 |  7   | OS-security_comprehensive       |                                                                 |   Tom    |   [x]   |   [x]  |     |
 |  8   | mobile-platsec-2019             | SoK: Android Security                                           |   Tom    |   [x]   |   [x]  |     |
