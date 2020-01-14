@@ -42,9 +42,12 @@ Idea: Microarchitectural state (caches) is modified even if memory access was no
     \includegraphics[width=0.8\linewidth]{images/meltdown-cache.png}
 \end{center}
 
-\texttt{probe\char`_array} will be accessed at an index which depends on the
+\begin{enumerate}
+    \item Use a custom exception handler to page fault.
+    \item \texttt{probe\char`_array} will be accessed at an index which depends on the
 secret (e.g. data in kernel address space $[$\texttt{kernel\char`_address}$]$).
-Check cache load times for all indices of array to get the index which was accessed by prohibited memory read.
+    \item Check cache load times for all indices of array to get the index which was accessed by prohibited memory read.
+\end{enumerate}
 
 \subsection{Spectre}
 \begin{itemize}
