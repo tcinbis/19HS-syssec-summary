@@ -1,16 +1,57 @@
 % !TeX root = ../summary-syssec.tex
 
-\section{Intel SGX}
+\section{Intel SGX (Software Guard Extension)}
 \subsection{Basics}
 \begin{itemize}
   \item Security enhancements in Intel CPUs
+  \item Enclave = security-critical part of the application
   \item Main goal:
     \begin{itemize}
       \item Enable secure execution in otherwise untrusted platforms (OS, ...)
       \item Enclave data confidentiality and execution integrity
     \end{itemize}
-  \item Enclave = security-critical part of the application
+  \item Idea: Reduce TCB and trust boundary.
+    \begin{center}
+      \includegraphics[width=0.3\columnwidth]{sgx_idea.png}
+    \end{center}
+  \item Unique set of keys are burned into the processor.
 \end{itemize}
+
+\subsection{Enclave Creation}
+\begin{center}
+  \includegraphics[width=0.9\columnwidth]{sgx_create_enclave.png}
+\end{center}
+
+\subsection{Sealing}
+\begin{itemize}
+  \item Store encrypted confidential data on disk. Only Enclave can access it.
+  \item Enclave has no direct access to IO / storage.
+  \item Same Enclave ID on the same platform can unseal it's sealed data.
+  \item Enclave will loose state across reboots, but can unseal it's sealed
+    state.
+\end{itemize}
+
+
+\subsection{Attestation and secure communication}
+\begin{itemize}
+  \item Two enclaves can communicate to securely over an untrusted channel.
+  \item Remote Attestation allows Enclave to check whether other instance is a
+    valid and secure SGX Enclave.
+\end{itemize}
+
+\subsection{Application: DelegaTEE}
+\begin{itemize}
+  \item Owner's credentials remain confidential.
+  \item The Owner can restrict access to his account (in time, actions,
+    ...)
+  \item Difficult to distinguish between access by the
+    Delegatee and Owner
+\end{itemize}
+\textbf{Functioning:}\\
+\begin{center}
+  \includegraphics[width=0.9\columnwidth]{sgx_delegatee.png}
+\end{center}
+
 
 \subsection{Attacks}
 \subsubsection{Cache-timing attack}
@@ -20,20 +61,20 @@
       \item Use Performance Monitoring Counters (PMC) to count cache misses
 	(instead of timing L1 vs. L2)
       \item Enabled by privileged adversary
-      \end{itemize}
+    \end{itemize}
   \item  isolate victim
     \begin{itemize}
       \item Assign the attack process and victim enclave to separate core
       \item Reduces noise
-      \end{itemize}
+    \end{itemize}
   \item  hyper-threading
     \begin{itemize}
       \item Run uninterrupted victim enclave and attacker in parallel
       \item Complicates attack detection
-      \end{itemize}
+    \end{itemize}
   \item Attack target
     \begin{itemize}
       \item Attack non-cryptographic computations
-      \end{itemize}
+    \end{itemize}
 \end{itemize}
 Generic and efficient defenses  are an open problem.
