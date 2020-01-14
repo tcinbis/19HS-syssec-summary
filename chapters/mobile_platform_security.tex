@@ -26,7 +26,7 @@ Android implements two reference monitors in different places:
     \item[Linux-Kernel] for IPC calls to other apps
 \end{description}
 
-Problem with permission based design is twofold:
+Problem with permission based design is manifold:
 \begin{enumerate}
     \item Users can't associate privacy risks with permissions
     \item How fine-grained should permissions be?
@@ -34,8 +34,14 @@ Problem with permission based design is twofold:
 	\item Too fine-grained $\Rightarrow$ Too many permissions $\Rightarrow$ Unusable
 	\item Too coarse-grained $\Rightarrow$ No real restriction $\Rightarrow$ Less Secure
       \end{itemize}
+    \item Habituation
     \item Developers tend to request too many permissions
     \item Developers fail to protect IPC interfaces (confused deputy attack)
+      \begin{enumerate}
+      	\item App A provides service that requires permission X
+	\item App B does not have X
+	\item B calls A $\rightarrow$ A performs service for B $\rightarrow$ A functions as deputy
+      \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Application Signing}
