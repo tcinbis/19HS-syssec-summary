@@ -1,5 +1,5 @@
 \section{Mobile Platform Security}
-All concepts and issued discussed below are in Android, but may also apply to iOS or other mobile OSs. 
+All concepts and issued discussed below are in Android, but may also apply to iOS or other mobile OSs.
 \subsection{Mobile OS Security}
 \subsubsection{Basics}
 \textbf{Permission-based} access control is key design decision for Android.
@@ -29,9 +29,25 @@ Android implements two reference monitors in different places:
 Problem with permission based design is twofold:
 \begin{enumerate}
     \item Users can't associate privacy risks with permissions
+    \item How fine-grained should permissions be?
+      \begin{itemize}
+	\item Too fine-grained $\Rightarrow$ Too many permissions $\Rightarrow$ Unusable
+	\item Too coarse-grained $\Rightarrow$ No real restriction $\Rightarrow$ Less Secure
+      \end{itemize}
     \item Developers tend to request too many permissions
     \item Developers fail to protect IPC interfaces (confused deputy attack)
 \end{enumerate}
+
+\subsubsection{Application Signing}
+\begin{itemize}
+	\item Applications have to be signed by the developers
+	\item All Updates have to be signed with the same key
+\end{itemize}
+$\Rightarrow$ Easy to check for legitimate updates
+\begin{itemize}
+\item Signature matches app to developer, but real ID is not checked
+\end{itemize}
+$\Rightarrow$ Signature does not imply trustworthiness
 
 \subsubsection{Lessons Learned Android}
 \begin{itemize}
