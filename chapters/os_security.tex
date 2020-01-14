@@ -126,6 +126,8 @@ Kernel verifies permissions before system call! Compares UID and GID (Group ID) 
   \item \texttt{/bin/passwd} can access \textbf{any} system ressource.
   \item $\Rightarrow$ must trust \texttt{/bin/passwd}
 \end{itemize}
+Many programs can run as root and thus can modify the
+shadow password file!
 
 
 \subsubsection{SELinux}
@@ -156,6 +158,14 @@ This is called \textbf{type enforcement}! SELinux can make two types of decision
     \item[transition decision] Is subject allowed to do somthing in another domain (transition into this domain)?
 \end{description}
 Hard part is not to grant access to files, but allowing \textbf{safe domain transitions}.
+
+\underline{\textbf{Allow rule has four elements:}}
+\begin{description}
+  \item[Source type:] Domain type of a process attempting access
+  \item[Target type:] Type of an object being accessed by the process
+  \item[Object class:] Class of object that the specified access is permitted
+  \item[Permission:] Kind of access that the source type is allowed
+\end{description}
 
 Example rule for passwd (access to shadow file missing):\\
 \texttt{allow user\char`_t passwd\char`_exec\char`_t: file $\{$ getattr execute $\}$; \\ allow passwd\char`_t passwd\char`_exec\char`_t: file entrypoint; \\ allow user\char`_t passwd\char`_t: process transition;}
