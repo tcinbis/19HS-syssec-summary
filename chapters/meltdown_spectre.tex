@@ -1,7 +1,22 @@
 \section{Meltdown-Spectre Attacks}
 \subsection{Meltdown}
 \subsubsection{Basics}
-Architectural state $\not = $ Microarchitectural state
+\begin{center}
+  \begin{tabular}{|p{0.45\columnwidth}|p{0.45\columnwidth}|}
+    \hline
+    \textbf{Architecture} & \textbf{Microarchitecture}\\
+    \hline
+    \hline
+    Abstract 	& Implemented\\
+    \hline
+    Defined in Instruction Set Architecture (ISA) & Follows ISA\\
+    \hline
+    E.g. x86, ARM & E.g. Intel core i7, AMD Ryzen\\
+    \hline
+    Registers, main memory & Cache, Reorder buffer, branch prediction \\
+    \hline
+  \end{tabular}
+\end{center}
 
 Cache location depends on actual data address.
 
