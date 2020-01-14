@@ -19,7 +19,7 @@ Whether to allow requests from \textbf{subjects} to perform \textbf{operations} 
 
 An access matrix defines which operations a subject can perform on an obj. (subject as row, object as column)
 Store by column: ACL (\textbf{A}ccess \textbf{C}ontrol \textbf{L}ist) stored with objects.
-Store by column: Capability of a subject
+Store by row: Capability of a subject
 \begin{center}
     \includegraphics[width=0.65\linewidth]{images/os_sec_capabilities-vs-ACLs.png}
 \end{center}
@@ -90,6 +90,9 @@ The kernel ignores \texttt{setuid} on scripts for security reasons.
   \item[sticky bit (\texttt{T}, or \texttt{t} if the execute bit is set for
     \texttt{others})] states that files and directories within that directory
     may only be deleted or renamed by their owner (or root)
+  \item[setuid] no effects
+  \item setgid] causes any file created in a directory to inherit the
+    directory's group
 \end{description}
 
 \subsubsection{\texttt{sudo}, \texttt{su}}
@@ -115,6 +118,15 @@ UID 0 is reserved for \texttt{root}.
 \end{description}
 
 Kernel verifies permissions before system call! Compares UID and GID (Group ID) of subject and object.
+
+\subsubsection{Password change}
+\begin{itemize}
+  \item \texttt{/bin/passwd} has suid bit set and thus runs as root.
+  \item This is needed to change the passwords in \texttt{/etc/passwd}.
+  \item \texttt{/bin/passwd} can access \textbf{any} system ressource.
+  \item $\Rightarrow$ must trust \texttt{/bin/passwd}
+\end{itemize}
+
 
 \subsubsection{SELinux}
 No default superuser exists, because SELinuxs default is to deny access. Everything must be specifically granted.
