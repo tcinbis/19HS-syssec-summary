@@ -15,6 +15,41 @@ Acronyms:
     \item[IEE] Isolated Execution Environment
     \item[DMA] Direct Memory Access
 \end{description}
+
+\subsection{Some Current Approaches}
+\subsubsection{Program Code in ROM}
+\begin{description}
+	\item[Approach:] keep entire program in ROM
+	\item[Advantage:] Simple, No injection possible
+	\item[Disadvantage:] No updates possible, ROP attacks possible, no
+	  isolation
+	\item[Verdict:] Not practical
+\end{description}
+
+\subsubsection{Secure Boot}
+\begin{description}
+	\item[Approach:] Only load code with valid signature
+	\item[Advantage:] Only approved software loaded
+	\item[Disadvantage:] No isolation, difficult to prevent roll-back
+	  attacks
+	\item[Verdict:] Weak security guarantee
+\end{description}
+
+\subsubsection{Virtual-machine-based Isolation}
+\begin{description}
+	\item[Approach:] Isolate apps by executing in VM
+	\item[Advantage:] smaller TCB, isolation between apps
+	\item[Disadvantage:] VM still large \& part of TCB, complex
+	\item[Verdict:] Step in right direction
+\end{description}
+
+\subsection{General Approach}
+\begin{enumerate}
+	\item Isolated Execution
+	\item Remote Attestation
+	\item Sealed Storage
+\end{enumerate}
+
 \subsection{TPM}
 \subsubsection{Basics}
 \begin{description}
@@ -22,7 +57,7 @@ Acronyms:
 \end{description}
 Adversary model of TPM:
 \begin{itemize}
-    \item remote attacks 
+    \item remote attacks
         \begin{itemize}
             \item compromise OS and apps running on the OS
             \item complete control over network communication
@@ -56,7 +91,8 @@ Shortcomings:
     \item TOCTTOU: measurement at load-time and not at runtime (inefficient against dynamic attacks)
     \item coarse-grained: TCP is entire system
     \item no guarantee of execution
-    \item every system is different
+    \item every system is different $\Rightarrow$ Database of correct hashes is
+      large
 \end{itemize}
 
 \subsubsection{Dynamic Root of Trust a.k.a. Late Launch}
@@ -73,23 +109,34 @@ Required computing primitives:
             \item execute SLB
         \end{enumerate}
     \item remote attestation
+      \begin{center}
+	\includegraphics[width=0.8\columnwidth]{tcg-attestation.png}
+      \end{center}
         \begin{enumerate}
             \item verifier sends nonce to TPM
             \item TPM returns measurements, nonce signed with platform key
         \end{enumerate}
+	\textbf{Attestation says, that \textit{a} TPM signed it, but not
+	\textit{which}} $\Rightarrow$ Possible attack!
     \item establish secure channel
+      \begin{center}
+	\includegraphics[width=0.8\columnwidth]{tcg-secure-channel.png}
+      \end{center}
         \begin{enumerate}
             \item verifier sends nonce to TPM
             \item TPM generates $\{K, K^{-1}\}$, send back $\{\texttt{measurement, nonce}, K\}$ signed with platform key
         \end{enumerate}
     \item verify output
+      \begin{center}
+	\includegraphics[width=0.8\columnwidth]{tcg-io.png}
+      \end{center}
         \begin{enumerate}
             \item verifier sends nonce to TPM
             \item TPM sends back measurement, nonce, input and output signed with platform key
         \end{enumerate}
 \end{itemize}
 
-No need to trust OS anymore, therefor minimal TCB.
+\textbf{No need to trust OS anymore, therefor minimal TCB.}
 
 \subsection{SGX vs TPM}
 SGX advantages:
