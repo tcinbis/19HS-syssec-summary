@@ -12,24 +12,31 @@ Note: classical defence mechanisms like firewalls are not effective
 
 Works because firmware only includes a MAC and is not signed (asymmetrically), therefor extracted key can \textit{sign} new firmware updates.
 
+\subsubsection{IoT Stack}
+\begin{center}
+    \includegraphics[width=\linewidth]{images/iot_stack}
+\end{center}
+
 \subsubsection{Encrypt everything?}
 \textbf{Not sufficient}! device identifiers, traffic volume still leak information, activities
 
 \begin{description}
-    \item[existential leakage] single transmission implies real-world event
-    \item[statistical leakage] deviation from normal implies real-world event
+  \item[existential leakage] single transmission implies real-world event
+    \begin{itemize}
+      \item Can not be fully eliminated
+    \end{itemize}
+  \item[statistical leakage] deviation from normal implies real-world event
+    \begin{itemize}
+      \item Can be eliminated.
+    \end{itemize}
 \end{description}
 
 \subsubsection{Hide transmission times and encrypt?}
-\textbf{Not sufficient}! Examples: 
+\textbf{Not sufficient}! Examples:
 \begin{itemize}
     \item VOIP word reconstruction from encrypted packages (leak from variable bit length encoding and length-preserving encryption).
     \item side-channel leaks of web apps by analysing traffic
 \end{itemize}
-
-\begin{center}
-    \includegraphics[width=\linewidth]{images/iot_stack}
-\end{center}
 
 \subsection{Device Pairing}
 \begin{description}
@@ -40,6 +47,28 @@ Works because firmware only includes a MAC and is not signed (asymmetrically), t
 Paring method shall minimise I/O hardware needed and avoid complex user interactions.
 
 \begin{description}
-    \item[Out-of-band] extra channel which guarantees authenticity and is assumed to be secure even under MITM attack
+    \item[Out-of-band] extra channel which guarantees authenticity and is
+      assumed to be secure even under MITM attack \hfill\\
+      Examples:
+      \begin{itemize}
+      	\item Visible Light
+	\item Infrared
+	\item Audio
+	\item Haptic
+	\item Sensing
+      \end{itemize}
     \item[In-band] often relies on physical channel properties and use special encoding (etc.) to detect MITM attack easily.
 \end{description}
+
+\subsubsection{Bluetooth Low Energy}
+Four authentication methods supported:
+\begin{description}
+  \item[Just Works] provides no authentication.
+  \item[Passkey Entry] displays a 6-digit PIN code on one device, and the user needs to
+    type the PIN on the other.
+  \item[Numeric Comparison] displays 6-digit PIN codes on both devices and the
+    user needs to confirm that they are identical.
+  \item[Out-of-band (OOB)] is directly provided with a shared key and assumes the key
+    has been securely established via an alternative OOB channel.
+\end{description}
+Devices can negotiate and select one based on their I/O capabilities.

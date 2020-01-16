@@ -61,3 +61,5 @@ Prevents MITM attacks. Attacker can even know entire memory before protocol runs
 Replace interrupt handlers to prevent attacker to interrupt verification function or executable.
 
 \textbf{Trick}: Write checksum to stack, replace handlers right after checksum computation. If attacker causes an interrupt, the interrupt will overwrite stack with checksum $\xrightarrow{}$ attestation fails.
+
+\textbf{Drawback:} Requires defense against proxy and overclocking attack.
