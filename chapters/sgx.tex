@@ -14,6 +14,20 @@
     \begin{center}
       \includegraphics[width=0.3\columnwidth]{sgx_idea.png}
     \end{center}
+  \item Trusted are:
+    \begin{itemize}
+      \item Intel
+      \item The CPU
+      \item Quoting Enclave
+      \item Intel SGX Trusted Libraries
+    \end{itemize}
+  \item Not trusted:
+    \begin{itemize}
+      \item BIOS, Firmware
+      \item OS
+      \item Other software running on the machine
+      \item Other hardware (e.g. memory, motherboard)
+    \end{itemize}
   \item Unique set of keys are burned into the processor.
   \item Parallel Execution of different Enclaves possible.
 \end{itemize}
@@ -37,7 +51,13 @@
 \begin{itemize}
   \item Two enclaves can communicate securely over an untrusted channel.
   \item Remote Attestation allows Enclave to check whether other instance is a
-    valid and secure SGX Enclave.
+    valid and secure SGX Enclave:
+    \begin{enumerate}
+      \item Verifier sends nonce.
+      \item Enclave generates report.
+      \item Pass report to quoting enclave which verifies the report.
+      \item Signs report with the platform key and send to the verifier.
+    \end{enumerate}
 \end{itemize}
 
 \subsection{Application: DelegaTEE}
@@ -83,3 +103,10 @@
     \end{itemize}
 \end{itemize}
 Generic and efficient defenses  are an open problem.
+
+\subsubsection{Page Fault Attack}
+Page faults allow the OS to observe input-dependent control transfer or
+input-dependent data access. Thereby the OS can infer the execution flow and
+can observe otherwise protected inputs.
+
+Protection: Rewrite s.t. memory access pattern does not depend on input.
