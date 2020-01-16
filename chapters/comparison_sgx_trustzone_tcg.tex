@@ -3,9 +3,15 @@
 \section{Comparison SGX, TrustZone and TCG}
 \begin{tabular}{@{}llll@{}}
 \toprule
-                & SGX & Reliable & TCG  \\ \midrule
+                & SGX & TrustZone & TCG  \\ \midrule
   Execution environment of different apps & isolated            & same (small
   TEE OS)          &  \\
-Remote attestation & defines protocol and service            & not specified          &  \\
-Development    & open            & not open          &  \\ \bottomrule
+Remote attestation & defines protocol and service over third party            &
+not specified          &  no third party required\\
+Memory encryption & yes 	& 	& no\\
+Sealed storage 	& no 		& 	& yes\\
+Development    & open            & proprietary          &  \\
+Support for parallelism & Yes 	& 	& No\\
+Interrupt Enclaves 	& Yes 	& 	& No \\
+\bottomrule
 \end{tabular}
