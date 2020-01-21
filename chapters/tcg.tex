@@ -72,6 +72,11 @@ Adversary model of TPM:
 Basic TPM functions
 \begin{itemize}
     \item PCR registers for integrity measurement chain $PCR_{new} = \texttt{SHA-1}(PCR_{old}|| \texttt{SHA-1}(data))$
+      \begin{itemize}
+	\item Static PCRs are only reset at system boot.
+	\item Dynamic PCRs initialized to -1 at system boot, reset to 0 upon entry into IEE.
+      \end{itemize}
+
     \item on-chip storage for SRK
     \item manufacturer certificate
     \item remote attestation with PCRs and AIK
