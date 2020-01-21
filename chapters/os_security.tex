@@ -130,21 +130,30 @@ Many programs can run as root and thus can modify the
 shadow password file!
 
 
-\subsubsection{SELinux}
+\subsection{SELinux}
 No default superuser exists, because SELinuxs default is to deny access. Everything must be specifically granted.
 
+\subsubsection{RBAC: Role based access control}
+\begin{itemize}
+  \item rules specify roles user can use
+  \item rules specify when and where a user can transition into another role
+\end{itemize}
+
+\subsubsection{MLS:  multi level security}
+\begin{itemize}
+  \item handling of classified data where \textit{no read up} or \textit{write down} is allowed
+  \item enforce by file system labeling
+\end{itemize}
+
+\subsubsection{Modes}
+SELinux has the following modes:
+
 \begin{description}
-    \item[RBAC] Role based access control
-        \begin{itemize}
-            \item rules specify roles user can use
-            \item rules specify when and where a user can transition into another role
-        \end{itemize}
-    \item[MLS] multi level security
-        \begin{itemize}
-            \item handling of classified data where \textit{no read up} or \textit{write down} is allowed
-            \item enforce by file system labeling
-        \end{itemize}
+  \item[Disabled:] loaded, but not running. Only DAC is enforced
+  \item[Permissive:]  Policy is not enforced, but would-be denials are logged
+  \item[Enforcing:] Policy is enforced, access is denied based on rules
 \end{description}
+\subsubsection{Type enforcement}
 
 In SELinux every subject/object has a \textbf{security context} which consists of three labels:\vspace{-1.5mm}
 \begin{description}
@@ -159,7 +168,8 @@ This is called \textbf{type enforcement}! SELinux can make two types of decision
 \end{description}
 Hard part is not to grant access to files, but allowing \textbf{safe domain transitions}.
 
-\underline{\textbf{\texttt{Allow} rule has four elements:}}
+\subsubsection{Allow rule}
+four elements:
 \begin{description}
   \item[Source type:] Domain type of a process attempting access
   \item[Target type:] Type of an object being accessed by the process
