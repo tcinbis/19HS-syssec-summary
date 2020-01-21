@@ -31,6 +31,17 @@ Examples:
 
 
 \subsubsection{Square-And-Multiply}
+\begin{lstlisting}
+// Computes C = m^d mod n
+Square-And-Multiply(m, d, n):
+  w = bitlength(d)
+  x = m
+  for i = 1 to w-1:
+    x = x*x  mod n
+    if (bit i of d) == 1:
+      x = x*m mod n
+  return x
+\end{lstlisting}
 
 \begin{itemize}
   \item Key-dependent Branching
