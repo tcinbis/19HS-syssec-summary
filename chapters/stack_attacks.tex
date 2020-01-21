@@ -1,0 +1,25 @@
+% !TeX root = ../summary-syssec.tex
+\section{Stack Attacks}
+\subsection{Stack Frame}
+\subsubsection{Construction}
+The steps needed to call a function and construct a new stack frame are
+\begin{enumerate}
+  \item Push the last argument to the top of the stack;
+  \item Push the first argument onto the stack;
+  \item Push the return address onto the stack;
+  \item Jumping to the called function;
+  \item Saving the caller's base pointer on the stack;
+  \item Move the base pointer to the top of the stack
+  \item Allocating local memory for the callee.
+\end{enumerate}
+
+\subsubsection{Destruction}
+The steps needed to seamlessly return and resume the execution of the parent
+(caller) function are:
+\begin{enumerate}
+  \item Moving the stack pointer to the bottom of the callee's frame (value of
+  \texttt{ebp})
+  \item Restoring the caller's base pointer by popping it
+  \item Taking the return address off the stack and jumping to it
+  \item Freeing space allocated for the callee arguments
+\end{enumerate}
