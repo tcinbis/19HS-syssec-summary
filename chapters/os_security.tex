@@ -75,6 +75,8 @@ Prevent it by:
 \end{itemize}
 
 \subsection{Unix Access Control}
+\subsubsection{Chmod}
+Only the owner  of a file (or \texttt{root}) can change file permissions. Even if a user has write access via group permissions he is not able to change it.
 \subsubsection{Setuid}
 When an executable file's \texttt{setuid} permission is set, users may execute that
 program with a level of access that matches the user who owns the file.
@@ -82,11 +84,10 @@ program with a level of access that matches the user who owns the file.
 The kernel ignores \texttt{setuid} on scripts for security reasons.
 \subsubsection{Directory Permissions}
 \begin{description}
-  \item[read bit (\texttt{r})] allows to list the files within the directory
-  \item[write bit (\texttt{w})] allows to create, rename, or delete files
+  \item[read bit (\texttt{r})(\texttt{4})] allows to list the files within the directory
+  \item[write bit (\texttt{w})(\texttt{2})] allows to create, rename, or delete files
     within the directory, and modify the directory's attributes
-  \item[execute bit (\texttt{x})] allows  to enter the directory, and access
-    files and directories inside
+  \item[execute bit (\texttt{x})(\texttt{1})] allows  to enter the directory, and access files and directories inside (without execute permission we can \textbf{not} list, write or create files in the directory)
   \item[sticky bit (\texttt{T}, or \texttt{t} if the execute bit is set for
     \texttt{others})] states that files and directories within that directory
     may only be deleted or renamed by their owner (or root)
@@ -100,6 +101,7 @@ The kernel ignores \texttt{setuid} on scripts for security reasons.
 \texttt{sudo}:
 \begin{itemize}
   \item used to gain root access using the user's own password.
+  \item users with sudo access defined in \texttt{/etc/sudoers} or part of \texttt{sudo} group. 
 \end{itemize}
 \texttt{su}:
 \begin{itemize}
