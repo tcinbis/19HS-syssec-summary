@@ -30,6 +30,7 @@
     \end{itemize}
   \item Unique set of keys are burned into the processor.
   \item Parallel Execution of different Enclaves possible.
+  \item Enclave code can not contain secrets (known to OS). Use attestation and secure channel establishment to provision secrets.
 \end{itemize}
 
 \subsection{Enclave Creation}
@@ -54,7 +55,7 @@
     valid and secure SGX Enclave:
     \begin{enumerate}
       \item Verifier sends nonce.
-      \item Enclave generates report.
+      \item Enclave generates report, which contains Diffi-Hellman contribution.
       \item Pass report to quoting enclave which verifies the report.
       \item Signs report with the platform key and send to the verifier.
     \end{enumerate}
@@ -101,6 +102,7 @@
     \begin{itemize}
       \item Attack non-cryptographic computations
     \end{itemize}
+  \item Prime + Probe by other malicious enclave (can extract 96\% of a RSA key).
 \end{itemize}
 Generic and efficient defenses  are an open problem.
 
