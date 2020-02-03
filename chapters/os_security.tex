@@ -132,6 +132,18 @@ Many programs can run as root and thus can modify the
 shadow password file!
 
 
+\subsection{Linux Security Module}
+Linux Security Module (LSM) is a framework with the ideas:
+\begin{itemize}
+  \item Hook security functions and security data structures
+  \item Allow registration and initialization of security modules (e.g.
+    SELinux)
+  \item Allow certain security attributes to be available to userspace services
+    through \texttt{/proc}
+  \item Limit performance overhead
+\end{itemize}
+
+
 \subsection{SELinux}
 No default superuser exists, because SELinuxs default is to deny access. Everything must be specifically granted.
 
