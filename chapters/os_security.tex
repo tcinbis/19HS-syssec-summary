@@ -101,7 +101,7 @@ The kernel ignores \texttt{setuid} on scripts for security reasons.
 \texttt{sudo}:
 \begin{itemize}
   \item used to gain root access using the user's own password.
-  \item users with sudo access defined in \texttt{/etc/sudoers} or part of \texttt{sudo} group. 
+  \item users with sudo access defined in \texttt{/etc/sudoers} or part of \texttt{sudo} group.
 \end{itemize}
 \texttt{su}:
 \begin{itemize}
@@ -181,6 +181,11 @@ four elements:
 
 Example rule for passwd (access to shadow file missing):\\
 \texttt{allow user\char`_t passwd\char`_exec\char`_t: file $\{$ getattr execute $\}$; \\ allow passwd\char`_t passwd\char`_exec\char`_t: file entrypoint; \\ allow user\char`_t passwd\char`_t: process transition;}
+
+\subsubsection{System call}
+\begin{center}
+  \includegraphics[width= 0.7\columnwidth]{os_sec_system-call.png}
+\end{center}
 
 \subsection{Other OSs}
 \subsubsection{Qubes}

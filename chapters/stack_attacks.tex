@@ -35,8 +35,8 @@ The steps needed to seamlessly return and resume the execution of the parent
     system can conclude that there was a buffer overflow.
   \item [Address space layout randomization (ASLR):] The addresses of
     stack, heap and libraries are moved around. Because of this, the
-    addresses of specific calls are different on different machines, and
-    thus, an exploit won't automatically work on any machine.
+    addresses of specific calls are different on every call, and
+    attacker can't find the correct address by trial and error.
 \end{description}
 
 \subsection{Format String attacks}
